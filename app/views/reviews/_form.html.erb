@@ -1,0 +1,17 @@
+<%= form_with(model: review, local: true) do |form| %>
+
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :reviews_body %>
+      <%= form.text_area :reviews_body, rows: 6 %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>

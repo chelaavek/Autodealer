@@ -1,0 +1,2 @@
+module AutocentresHelper
+end

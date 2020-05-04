@@ -1,0 +1,19 @@
+<p>
+  <strong>Title:</strong>
+  <%= @review.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @review.reviews_body %>
+</p>
+
+<p>
+<% user = AdminUser.find_by(id: @review.admin_user_id) %>
+  <strong><%= user.email %></strong>
+</p>
+
+<p id="notice"><%= notice %></p>
+  <% if current_admin_user && current_admin_user.email == user.email %><%= link_to 'Edit', edit_review_path(@review) %> |
+<% end %>
+<%= link_to 'Back', reviews_path %>

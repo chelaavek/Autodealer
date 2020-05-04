@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Brands</h1>
+<h4> Search by model:</h4>
+
+<table>
+    <% @brands.each do |brand| %>
+        <div class="entry">
+          <% if brand.image_url %>
+              <%= image_tag(brand.image_url, size: "100x100") %>
+          <% end %>
+          <h3><%= link_to "#{brand.name}", cars_path(search: brand.name)  %></h3>
+        </div>
+    <% end %>
+</table>

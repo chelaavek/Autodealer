@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Olegos Car Dealer Centre</title>
+  <%= stylesheet_link_tag "application", media: "all",
+                          "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tag %>
+</head>
+
+<body class='<%= controller.controller_name %>'>
+<div id="banner">
+  <%= link_to(image_tag("logo.jpg"), "/") %>
+  <%= @page_title || "Olegos Car Dealer Centre" %>
+</div>
+<div id="columns">
+  <div id="side">
+    <ul>
+      <% if current_admin_user %>
+          <% if current_admin_user.role == 'admin' %>
+              <%= link_to "Admin Features", admin_admin_users_path %>
+              <%=link_to "#{current_admin_user.email}",admin_admin_user_path(current_admin_user.id) %>
+          <%end%>
+          <li><%= link_to "Logout", destroy_admin_user_session_path%> </li>
+      <% else %>
+          <%= link_to "Login", new_admin_user_session_path  %>
+      <% end %>
+      <li><%= link_to "Catalog", store_path  %></li>
+      <li><%= link_to "Promotions", promotions_path  %></li>
+      <li><%= link_to "Reviews", reviews_path  %></li>
+      <li><%= link_to "Home", store_path  %></li>
+
+      <%= form_tag(cars_path, method: :get) do %>
+          <%= text_field_tag(:search, params[:search]) %>
+          <%= submit_tag ("Search") %>
+      <% end %>
+
+    </ul>
+  </div>
+</div>
+<div id="main">
+  <%= yield %>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cars</h1>
+
+
+
+<table>
+  <% @cars.each do |car| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+      <td>
+          <%= image_tag(car.image_url, class: 'list_image') %>
+        </td>
+
+        <td class="list_description">
+          <dl>
+            <%brand = Brand.find_by(id: car.brand_id) %>
+            <dt><%= brand.name %></dt>
+            <dt><%= car.model %></dt>
+            <dt><%= car.year %></dt>
+          </dl>
+        </td>
+
+        <td class="list_actions">
+          <%= link_to 'Show', car %><br/>
+        </td>
+  <% end %>
+</table>
+<br />

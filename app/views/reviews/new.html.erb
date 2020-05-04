@@ -1,0 +1,9 @@
+<% if cannot? :create, @review %>
+    <% controller.redirect_to store_url %>
+<% end %>
+
+<h1>New Review</h1>
+
+<%= render 'form', review: @review %>
+
+<%= link_to 'Back', reviews_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <td>
+        <h3><%= link_to "#{review.title}", review_path(id: review)  %></h3>
+        <dt><%= sanitize(review.reviews_body) %></dt>
+        <% user = AdminUser.find_by(id: review.admin_user_id) %>
+        <%= user.email %>
+        <td class="list_actions">
+          <%= link_to 'Show', review %><br/>
+          <% if current_admin_user && current_admin_user.email == user.email %>
+            <td><%= link_to 'Edit', edit_review_path(review),  :method => :get %></td>
+            <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :create, @review %>
+<%= link_to 'New Review', new_review_path %>
+<% end %>

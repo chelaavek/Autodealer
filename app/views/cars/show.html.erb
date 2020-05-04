@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>brand:</strong>
+  <%brand = Brand.find_by(id: @car.brand_id) %>
+  <%= brand.name %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car.model %>
+</p>
+
+<head>
+  <strong>Exterior color</strong>
+  <style type="text/css">
+    #layer1 {
+      width: 30px;/* Ширина слоя */
+      background: <%= @car.exterior_color if @car.exterior_color %>; /* Цвет фона */
+      height: 15px; /* Высота слоя */
+      padding: 5px; /* Поля вокруг текста */
+    }
+  </style>
+</head>
+<body>
+<div id="layer1">
+</div>
+</body>
+
+<head>
+  <strong>Interior color</strong>
+  <style type="text/css">
+    #layer1 {
+      width: 30px;/* Ширина слоя */
+      background: <%= @car.interior_color if @car.interior_color %>; /* Цвет фона */
+      height: 15px; /* Высота слоя */
+      padding: 5px; /* Поля вокруг текста */
+    }
+  </style>
+</head>
+<body>
+<div id="layer1">
+</div>
+</body>
+
+<p>
+  <strong>Engine</strong>
+  <%= @car.engine %>
+</p>
+
+
+<p>
+  <strong>Image :</strong>
+  <%= @car.image_url %>
+</p>
+
+<p>
+  <strong>Fuel Consumption</strong>
+  <%= @car.fuel_consumption %>
+</p>
+
+<p>
+  <strong>Options</strong>
+  <%= @car.options %>
+</p>
+<%= link_to 'Back', cars_path %>
