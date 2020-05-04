@@ -1,7 +1,9 @@
 class AdminUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, 
+  has_many :reviews
+
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable, :confirmable, :registerable
   ADMIN='admin'
   USER='user'

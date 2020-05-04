@@ -4,7 +4,7 @@ class ReviewsController < InheritedResources::Base
   end
 
   def show
-    @review=Review.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
 
@@ -33,9 +33,9 @@ class ReviewsController < InheritedResources::Base
 
 
   def update
-    @review = Review.find params[:id]
+    @review=Review.find_by_id(params[:id])
     respond_to do |format|
-      if @review.update(review_params)
+      if @review.update(review_params_for_update)
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
@@ -47,9 +47,8 @@ class ReviewsController < InheritedResources::Base
 
 
   def destroy
-    if @review
-      @review.destroy
-    end
+    @review=Review.find(params[:id])
+    @review.destroy
     respond_to do |format|
       format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
@@ -59,7 +58,11 @@ class ReviewsController < InheritedResources::Base
   private
 
     def review_params
-      params.permit(:title, :admin_user_id, :reviews_body, :id)
+      params.require(:review).permit(:admin_user_id, :title, :reviews_body, :id)
     end
+
+  def review_params_for_update
+    params.permit(:admin_user_id, :title, :reviews_body, :id)
+  end
 
 end

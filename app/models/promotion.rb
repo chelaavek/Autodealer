@@ -1,2 +1,4 @@
 class Promotion < ApplicationRecord
+
+
 end
